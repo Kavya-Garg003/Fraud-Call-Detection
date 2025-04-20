@@ -1,20 +1,29 @@
 # 📞 Scam Call Detection using Machine Learning
 
-This project uses multiple datasets from Hugging Face to train three machine learning models — Naive Bayes, Support Vector Machine (SVM), and Random Forest — to detect scam conversations. It includes preprocessing logic to normalize differently structured datasets and evaluate model performance on a separate test dataset.
+This project uses multiple datasets from Hugging Face to train three machine learning models — Naive Bayes, Support Vector Machine (SVM), and Random Forest — to detect scam conversations. It includes preprocessing logic to normalize differently structured datasets and evaluate model performance on a separate test dataset. All the code, including training, testing, and visualization, is contained in a single notebook.
+
+---
 
 ## 📁 Project Structure
 
 ```bash
 .
-├── Training_and_Testing.ipynb       #Main Code File
-├── scam_call/                       #Frontend Code 
+├── Training_and_Testing.ipynb       # Main notebook: includes dataset loading, model training, testing, and visualization
+├── scam_call/                       # Frontend Code (React interface)
 ├── models/
-│   ├── naive_bayes_model.joblib
-│   ├── svm_model.joblib
-│   └── random_forest_model.joblib
+│   ├── naive_bayes_model.joblib     # Saved Naive Bayes model
+│   ├── svm_model.joblib             # Saved SVM model
+│   └── random_forest_model.joblib   # Saved Random Forest model
 ├── datasets/
 │   ├── combined_dataset.csv         # Combined and cleaned dataset from Hugging Face sources
 │   └── balanced_dataset.csv         # Separate dataset for testing models
+├── plots/
+│   ├── Naive_Bayes_confusion_matrix.png
+│   ├── SVM_confusion_matrix.png
+│   ├── Random_Forest_confusion_matrix.png
+│   ├── Naive_Bayes_roc_curve.png
+│   ├── SVM_roc_curve.png
+│   └── Random_Forest_roc_curve.png
 └── README.md
 ```
 
@@ -30,71 +39,35 @@ pip install pandas numpy scikit-learn matplotlib seaborn datasets joblib
 
 ---
 
-## ⚙️ Steps to Run the Project
+## ⚙️ How to Run the Project
 
-### 1. Combine and Preprocess All Datasets
+### 1. Open the Jupyter Notebook
+
+Launch Jupyter Notebook or use any environment like VS Code or Google Colab, and open:
 
 ```bash
-python combine_and_preprocess.py
+Training_and_Testing.ipynb
 ```
-
-This script:
-- Loads multiple Hugging Face datasets.
-- Extracts text and labels (from differently named columns).
-- Normalizes the labels to 0 (Not Scam) and 1 (Scam).
-- Saves the cleaned data as `combined_dataset.csv`.
 
 ---
 
-### 2. Train Models on the Combined Dataset
+### 2. Run All Cells
 
-```bash
-python train_models.py
-```
-
-This script:
-- Loads `combined_dataset.csv`.
-- Trains Naive Bayes, SVM, and Random Forest classifiers.
-- Saves the models in the `models/` folder.
-
----
-
-### 3. Test Models on a Separate Dataset
-
-Place your test file (e.g., `balanced_dataset.csv`) in the `data/` folder with columns:
-- `text`: The message/conversation.
-- `label`: Either 0 or 1.
-
-Then run:
-
-```bash
-python test_models.py
-```
-
-This script:
-- Loads the balanced test dataset.
-- Loads the trained models from the `models/` directory.
-- Evaluates them using accuracy and classification report.
-
----
-
-### 4. Generate Visualizations
-
-```bash
-python generate_graphs.py
-```
-
-This script:
-- Generates and saves confusion matrix heatmaps and ROC curves for all three models.
-- Outputs them to the `plots/` directory.
+- The notebook will:
+  - Load and combine multiple scam-related datasets from Hugging Face.
+  - Preprocess and normalize them into a unified format.
+  - Train three models: Naive Bayes, SVM, and Random Forest.
+  - Evaluate them on a clean, balanced test dataset (`balanced_dataset.csv`).
+  - Generate confusion matrices and ROC curves for all models.
+  - Save the models and plots to their respective directories.
 
 ---
 
 ## 🧠 Models Used
 
-- **Naive Bayes**: Good baseline for text classification.
-- **SVM**: High-performing linear classifier.
-- **Random Forest**: Ensemble model that improves accuracy and robustness.
+- **Naive Bayes**: A fast probabilistic classifier suitable for text.
+- **SVM**: Excellent generalization for high-dimensional data like TF-IDF vectors.
+- **Random Forest**: A robust ensemble model that prevents overfitting.
 
 ---
 
@@ -110,6 +83,7 @@ Random Forest | ~98.3% | ~95.4%
 
 ## 📎 Notes
 
-- Different datasets use different label names and formats — this was handled in preprocessing.
-- `final_scam` and others had unique schemas that were mapped to a unified format: `text` and `label`.
-- All test evaluations are done on a **clean, balanced**, and **separate** dataset not seen during training.
+- The notebook handles datasets with varying schemas and label formats.
+- Unified schema: All datasets are transformed to use `text` and `label` columns where `label` is either 0 (Not Scam) or 1 (Scam).
+- A separate, balanced dataset (`balanced_dataset.csv`) is used for evaluation to avoid data leakage.
+- Plots for each model are exported as `.png` files to the `plots/` directory.
