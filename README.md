@@ -1,5 +1,3 @@
----
-
 # 📞 Scam Call Detection using Machine Learning
 
 This project uses multiple datasets from Hugging Face to train three machine learning models — Naive Bayes, Support Vector Machine (SVM), and Random Forest — to detect scam conversations. It includes preprocessing logic to normalize differently structured datasets and evaluate model performance on a separate test dataset.
@@ -124,5 +122,3 @@ Random Forest | ~98.3% | ~95.4%
 - Different datasets use different label names and formats — this was handled in preprocessing.
 - `final_scam` and others had unique schemas that were mapped to a unified format: `text` and `label`.
 - All test evaluations are done on a **clean, balanced**, and **separate** dataset not seen during training.
-
----
