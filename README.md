@@ -6,24 +6,15 @@ This project uses multiple datasets from Hugging Face to train three machine lea
 
 ```bash
 .
-├── combine_and_preprocess.py        # Script to load and combine all Hugging Face datasets
-├── train_models.py                  # Trains Naive Bayes, SVM, and Random Forest models
-├── test_models.py                   # Evaluates saved models on a separate balanced test dataset
-├── generate_graphs.py               # Generates confusion matrix and ROC curve graphs
+├── Training_and_Testing.ipynb       #Main Code File
+├── scam_call/                       #Frontend Code 
 ├── models/
 │   ├── naive_bayes_model.joblib
 │   ├── svm_model.joblib
 │   └── random_forest_model.joblib
-├── data/
+├── datasets/
 │   ├── combined_dataset.csv         # Combined and cleaned dataset from Hugging Face sources
 │   └── balanced_dataset.csv         # Separate dataset for testing models
-├── plots/
-│   ├── Naive_Bayes_confusion_matrix.png
-│   ├── SVM_confusion_matrix.png
-│   ├── Random_Forest_confusion_matrix.png
-│   ├── Naive_Bayes_roc_curve.png
-│   ├── SVM_roc_curve.png
-│   └── Random_Forest_roc_curve.png
 └── README.md
 ```
 
